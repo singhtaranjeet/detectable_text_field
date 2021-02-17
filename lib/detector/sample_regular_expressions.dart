@@ -18,16 +18,19 @@ const _arabicLetters = '\u0621-\u064A';
 
 const _thaiLetters = '\u0E00-\u0E7F';
 
+const _indicLetters = "\u0900-\u0dff";
+
 const detectionContentLetters = _symbols +
     _numbers +
     _englishLetters +
+    _indicLetters+
     _japaneseLetters +
     _koreanLetters +
     _spanishLetters +
     _arabicLetters +
     _thaiLetters;
 
-const urlRegexContent = "((http|https)://)(www.)?" +
+const urlRegexContent = "((http://|https://|www.|http://www.|https://www.))" +
     "[a-zA-Z0-9@:%._\\+~#?&//=]" +
     "{2,256}\\.[a-z]" +
     "{2,6}\\b([-a-zA-Z0-9@:%" +
@@ -39,15 +42,18 @@ const urlRegexContent = "((http|https)://)(www.)?" +
 final hashTagRegExp = RegExp(
   "(?!\\n)(?:^|\\s)(#([$detectionContentLetters]+))",
   multiLine: true,
+  caseSensitive: false,
 );
 
 final atSignRegExp = RegExp(
   "(?!\\n)(?:^|\\s)([@]([$detectionContentLetters]+))",
   multiLine: true,
+  caseSensitive: false,
 );
 
 final urlRegex = RegExp(
   urlRegexContent,
+  caseSensitive: false,
   multiLine: true,
 );
 
@@ -55,21 +61,25 @@ final urlRegex = RegExp(
 final hashTagAtSignRegExp = RegExp(
   "(?!\\n)(?:^|\\s)([#@]([$detectionContentLetters]+))",
   multiLine: true,
+  caseSensitive: false,
 );
 
 final hashTagUrlRegExp = RegExp(
   "(?!\\n)(?:^|\\s)([#]([$detectionContentLetters]+))|$urlRegexContent",
   multiLine: true,
+  caseSensitive: false,
 );
 
 final hashTagAtSignUrlRegExp = RegExp(
   "(?!\\n)(?:^|\\s)([#@]([$detectionContentLetters]+))|$urlRegexContent",
   multiLine: true,
+  caseSensitive: false,
 );
 
 final atSignUrlRegExp = RegExp(
   "(?!\\n)(?:^|\\s)([@]([$detectionContentLetters]+))|$urlRegexContent",
   multiLine: true,
+  caseSensitive: false,
 );
 
 RegExp detectionRegExp({
